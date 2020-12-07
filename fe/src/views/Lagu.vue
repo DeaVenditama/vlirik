@@ -1,7 +1,7 @@
 <template>
     <Suspense>
         <template #default>
-            <SongsListContainer />
+            <SongsListContainer :artist="artist" :key="artist"/>
         </template>
         <template #fallback>
             <Loading />
@@ -13,6 +13,9 @@ import SongsListContainer from "@/components/SongsListContainer.vue"
 import Loading from "@/components/Loading.vue"
 
 export default {
+    props: [
+        "artist"
+    ],
     components:{
         SongsListContainer,
         Loading

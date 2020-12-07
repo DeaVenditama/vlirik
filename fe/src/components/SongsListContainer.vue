@@ -9,8 +9,20 @@
             </thead>
             <tbody>
                 <tr v-for="(song,index) in songs.songs" :key="index">
-                    <td class="border px-4 py-2">{{ song.judul }}</td>
-                    <td class="border px-4 py-2">{{ song.penyanyi }}</td>
+                    <td class="border px-4 py-2">
+                        <router-link 
+                            class="no-underline hover:underline text-blue-500 text-lg" 
+                            :to="{ name:'Detail', params:{id:song.id}}">
+                            {{ song.judul }}
+                        </router-link> 
+                    </td>
+                    <td class="border px-4 py-2">
+                        <router-link 
+                            class="no-underline hover:underline text-blue-500 text-lg" 
+                            :to="{ name:'Lagu', params:{artist:song.penyanyi}}">
+                            {{ song.penyanyi }}
+                        </router-link> 
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -33,11 +45,18 @@
 import useSongs from "@/modules/songs"
 
 export default {
-    async setup(){
-        const { error, load, songs, nextPage, prevPage } = useSongs();
+    props:[
+        "artist"
+    ],
+    async setup(props){
+        const { error, load, songs, nextPage, prevPage, loadByArtist } = useSongs();
 
-        await load();
-
+        if(props.artist=="all")
+        {
+            await load();
+        }else{
+            await loadByArtist(props.artist);
+        }
         return { load, error, songs, nextPage, prevPage }
     }    
 }

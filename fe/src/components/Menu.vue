@@ -5,7 +5,7 @@
             <h1>Vue-Lirik</h1>
             <router-link 
                 class="no-underline hover:underline text-blue-500 text-lg" 
-                to="/">
+                to="/all">
                 Lagu
             </router-link> 
             |

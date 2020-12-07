@@ -8,7 +8,13 @@
             </thead>
             <tbody>
                 <tr v-for="(artist,index) in artists.artists" :key="index">
-                    <td class="border px-4 py-2">{{ artist.penyanyi }}</td>
+                    <td class="border px-4 py-2">
+                        <router-link 
+                            class="no-underline hover:underline text-blue-500 text-lg" 
+                            :to="{ name:'Lagu', params:{artist:artist.penyanyi}}">
+                            {{ artist.penyanyi }}
+                        </router-link> 
+                    </td>
                 </tr>
             </tbody>
         </table>
